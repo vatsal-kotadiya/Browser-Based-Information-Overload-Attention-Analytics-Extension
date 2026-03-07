@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="styles.css">
   <title>Settings - Attention Extension</title>
   <style>
-    body { width: 400px; min-height: 400px; }
+    body {
+      width: 400px;
+      min-height: 400px;
+    }
+
     .settings-panel {
       background: var(--surface-color);
       border: 1px solid var(--border-color);
@@ -15,6 +20,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -57,10 +63,13 @@
       <button id="exportBtn" class="btn primary">Export Dataset (CSV)</button>
       <input type="file" id="importFile" style="display:none;" accept=".json">
       <button id="importBtn" class="btn" style="background: rgba(255,255,255,0.1);">Import Dataset (JSON)</button>
-      <button id="resetBtn" class="btn" style="color:#ef4444; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">Reset All Data</button>
+      <button id="resetBtn" class="btn"
+        style="color:#ef4444; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">Reset All
+        Data</button>
     </div>
   </div>
 
   <script src="settings.js"></script>
 </body>
+
 </html>

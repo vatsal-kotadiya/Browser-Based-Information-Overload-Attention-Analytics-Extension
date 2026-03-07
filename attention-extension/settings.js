@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trackTabSwitching: true,
       enableIdleDetection: true
     };
-    
+
     document.getElementById('enableTracking').checked = settings.enableTracking;
     document.getElementById('countNotifications').checked = settings.countNotifications;
     document.getElementById('trackTabSwitching').checked = settings.trackTabSwitching;
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Convert to CSV with new schema
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "Time,Event,From_Tab,To_Tab\n"; 
-      
+      csvContent += "Time,Event,From_Tab,To_Tab\n";
+
       data.events.forEach((row) => {
         let from = row.from_tab ? row.from_tab.replace(/,/g, "") : '';
         let to = row.to_tab ? row.to_tab.replace(/,/g, "") : '';
@@ -83,16 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = function(event) {
+    reader.onload = function (event) {
       try {
         const importedData = JSON.parse(event.target.result);
         if (importedData.events && importedData.summary) {
-           chrome.storage.local.set({ trackingData: importedData }, () => {
-             alert('Dataset successfully imported!');
-             window.location.reload();
-           });
+          chrome.storage.local.set({ trackingData: importedData }, () => {
+            alert('Dataset successfully imported!');
+            window.location.reload();
+          });
         } else {
-           alert("Invalid dataset format. Needs 'events' and 'summary' properties.");
+          alert("Invalid dataset format. Needs 'events' and 'summary' properties.");
         }
       } catch (err) {
         alert("Failed to parse JSON file.");

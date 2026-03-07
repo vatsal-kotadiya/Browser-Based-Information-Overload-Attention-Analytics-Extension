@@ -3,23 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const storedData = localStorage.getItem('attention_dataset');
   if (!storedData) {
-     document.getElementById('noDataWarning').style.display = 'block';
-     document.getElementById('reportData').style.display = 'none';
-     return;
+    document.getElementById('noDataWarning').style.display = 'block';
+    document.getElementById('reportData').style.display = 'none';
+    return;
   }
 
   const events = JSON.parse(storedData);
   let totalSwitches = 0;
   let totalNotifs = 0;
-  
+
   const distByHour = Array(24).fill(0);
   let earliest = Infinity;
   let latest = 0;
 
   events.forEach(e => {
     let t = new Date(e.time).getTime();
-    if(t < earliest) earliest = t;
-    if(t > latest) latest = t;
+    if (t < earliest) earliest = t;
+    if (t > latest) latest = t;
 
     if (e.event === 'tab_switch') {
       totalSwitches++;
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (earliest !== Infinity && latest !== 0 && latest > earliest) {
     let days = (latest - earliest) / (1000 * 60 * 60 * 24);
     // Assume 4 hours (240 mins) of active browser time per day on average over the span
-    activeMinutesApprox = Math.max(days * 240, Math.max(1, events.length)); 
+    activeMinutesApprox = Math.max(days * 240, Math.max(1, events.length));
   } else {
-    activeMinutesApprox = Math.max(1, events.length * 2); 
+    activeMinutesApprox = Math.max(1, events.length * 2);
   }
 
   let afiEstimate = (totalSwitches / activeMinutesApprox).toFixed(2);

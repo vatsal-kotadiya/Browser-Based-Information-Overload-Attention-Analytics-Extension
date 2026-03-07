@@ -201,7 +201,7 @@ button.danger:hover {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .switch {
@@ -224,7 +224,7 @@ button.danger:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   transition: .4s;
   border-radius: 24px;
 }
@@ -241,11 +241,11 @@ button.danger:hover {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--primary);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(20px);
 }
 
@@ -257,7 +257,8 @@ table {
   font-size: 0.85rem;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid var(--border-color);

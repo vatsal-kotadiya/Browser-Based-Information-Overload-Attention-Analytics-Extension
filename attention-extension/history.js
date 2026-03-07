@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   let allEvents = [];
-  
+
   chrome.storage.local.get("trackingData", (result) => {
     allEvents = result.trackingData ? result.trackingData.events : [];
     renderHistoryTable('daily', allEvents);
@@ -29,7 +29,7 @@ function setActiveBtn(btn) {
 function renderHistoryTable(viewMode, events) {
   const tbody = document.querySelector('#historyTable tbody');
   tbody.innerHTML = '';
-  
+
   if (events.length === 0) {
     const tr = document.createElement('tr');
     const td = document.createElement('td');
@@ -49,7 +49,7 @@ function renderHistoryTable(viewMode, events) {
   events.forEach(e => {
     let d = new Date(e.timestamp);
     let key;
-    
+
     if (viewMode === 'daily') {
       key = d.toISOString().split('T')[0]; // YYYY-MM-DD
     } else if (viewMode === 'weekly') {
@@ -71,12 +71,12 @@ function renderHistoryTable(viewMode, events) {
         sessionStart: null
       };
     }
-    
+
     let g = groups[key];
     if (e.event === 'tab_switch') g.switches++;
     if (e.event === 'tab_open') g.opens++;
     if (e.event === 'notification') g.notifications++;
-    
+
     // session time
     if (e.event === 'session_start') g.sessionStart = d.getTime();
     if (e.event === 'session_end' && g.sessionStart) {
@@ -85,47 +85,47 @@ function renderHistoryTable(viewMode, events) {
     }
   });
 
-  let sortedKeys = Object.keys(groups).sort((a,b) => b.localeCompare(a)); // Descending dates
-  
+  let sortedKeys = Object.keys(groups).sort((a, b) => b.localeCompare(a)); // Descending dates
+
   sortedKeys.forEach(k => {
     let g = groups[k];
     let activeMins = g.activeMs / 60000;
-    
+
     // Math exactly per roadmap
     let ils = (g.switches * 0.4) + (g.notifications * 0.3) + (g.opens * 0.3);
     let afi = activeMins > 0 ? (g.switches / activeMins) : 0;
-    
+
     const tr = document.createElement('tr');
     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-    
-    const tdDate = document.createElement('td'); 
-    tdDate.textContent = k; 
+
+    const tdDate = document.createElement('td');
+    tdDate.textContent = k;
     tdDate.style.padding = '12px 8px';
-    
-    const tdILS = document.createElement('td'); 
-    tdILS.textContent = ils.toFixed(1); 
+
+    const tdILS = document.createElement('td');
+    tdILS.textContent = ils.toFixed(1);
     tdILS.style.padding = '12px 8px';
     tdILS.style.fontWeight = 'bold';
-    
-    const tdAFI = document.createElement('td'); 
-    tdAFI.textContent = afi.toFixed(1); 
+
+    const tdAFI = document.createElement('td');
+    tdAFI.textContent = afi.toFixed(1);
     tdAFI.style.padding = '12px 8px';
     if (afi > 2) tdAFI.style.color = 'var(--warning)'; // highlight high distraction
-    
-    const tdSwitches = document.createElement('td'); 
-    tdSwitches.textContent = g.switches; 
+
+    const tdSwitches = document.createElement('td');
+    tdSwitches.textContent = g.switches;
     tdSwitches.style.padding = '12px 8px';
-    
-    const tdNotifs = document.createElement('td'); 
-    tdNotifs.textContent = g.notifications; 
+
+    const tdNotifs = document.createElement('td');
+    tdNotifs.textContent = g.notifications;
     tdNotifs.style.padding = '12px 8px';
-    
+
     tr.appendChild(tdDate);
     tr.appendChild(tdILS);
     tr.appendChild(tdAFI);
     tr.appendChild(tdSwitches);
     tr.appendChild(tdNotifs);
-    
+
     tbody.appendChild(tr);
   });
 }

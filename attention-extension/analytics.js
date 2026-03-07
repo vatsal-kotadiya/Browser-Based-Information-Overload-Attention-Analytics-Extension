@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCharts(data.events);
     calculateMetrics(data.events);
   });
-  
+
   setupButtons();
 });
 
@@ -20,9 +20,9 @@ function setupButtons() {
   });
 
   document.getElementById('clearBtn').addEventListener('click', () => {
-    if(confirm("Are you sure you want to clear all history?")) {
-       chrome.storage.local.set({
-        trackingData: { events: [], summary: {tabsOpened: 0, tabSwitches: 0, notifications: 0, activeMinutes: 0} }
+    if (confirm("Are you sure you want to clear all history?")) {
+      chrome.storage.local.set({
+        trackingData: { events: [], summary: { tabsOpened: 0, tabSwitches: 0, notifications: 0, activeMinutes: 0 } }
       }, () => window.location.reload());
     }
   });
@@ -35,16 +35,16 @@ function calculateMetrics(events) {
   events.forEach(e => {
     if (e.event === 'session_start') currentStart = new Date(e.timestamp).getTime();
     if (e.event === 'session_end' && currentStart) {
-       const ms = new Date(e.timestamp).getTime() - currentStart;
-       sessionLengths.push(ms / 60000); // mins
-       currentStart = null;
+      const ms = new Date(e.timestamp).getTime() - currentStart;
+      sessionLengths.push(ms / 60000); // mins
+      currentStart = null;
     }
   });
-  
-  let avgSession = sessionLengths.length > 0 
+
+  let avgSession = sessionLengths.length > 0
     ? (sessionLengths.reduce((a, b) => a + b, 0) / sessionLengths.length).toFixed(1) + ' m'
     : '--';
-    
+
   document.getElementById('avgSession').textContent = avgSession;
 
   // 2. Peak Distraction Hour
@@ -81,13 +81,13 @@ function renderCharts(events) {
   const switchesByHour = Array(24).fill(0);
   events.forEach(e => {
     if (e.event === 'tab_switch') {
-       switchesByHour[new Date(e.timestamp).getHours()]++;
+      switchesByHour[new Date(e.timestamp).getHours()]++;
     }
   });
   new Chart(document.getElementById('chart1'), {
     type: 'line',
     data: {
-      labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+      labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
       datasets: [{
         data: switchesByHour,
         borderColor: '#3b82f6',
@@ -103,7 +103,7 @@ function renderCharts(events) {
   events.forEach(e => {
     let dayStr = new Date(e.timestamp).toISOString().split('T')[0];
     if (!dailyData[dayStr]) dailyData[dayStr] = { switches: 0, opens: 0, notifs: 0 };
-    
+
     if (e.event === 'tab_switch') dailyData[dayStr].switches++;
     if (e.event === 'tab_open') dailyData[dayStr].opens++;
     if (e.event === 'notification') dailyData[dayStr].notifs++;
@@ -134,11 +134,11 @@ function renderCharts(events) {
   // 3. Hourly Activity Heatmap/Bar
   const activityByHour = Array(24).fill(0);
   events.forEach(e => activityByHour[new Date(e.timestamp).getHours()]++);
-  
+
   new Chart(document.getElementById('chart3'), {
     type: 'bar',
     data: {
-      labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+      labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
       datasets: [{
         data: activityByHour,
         backgroundColor: '#8b5cf6',
@@ -156,7 +156,7 @@ function renderCharts(events) {
     if (e.event === 'tab_open') multi['Opening Tabs']++;
     if (e.event === 'notification') multi['Notifications']++;
   });
-  
+
   new Chart(document.getElementById('chart4'), {
     type: 'doughnut',
     data: {
@@ -175,16 +175,16 @@ function renderCharts(events) {
   events.forEach(e => {
     if (e.event === 'session_start') currentStart = new Date(e.timestamp).getTime();
     if (e.event === 'session_end' && currentStart) {
-       const mins = (new Date(e.timestamp).getTime() - currentStart) / 60000;
-       if (mins < 5) buckets['<5m']++;
-       else if (mins < 15) buckets['5-15m']++;
-       else if (mins < 30) buckets['15-30m']++;
-       else if (mins < 60) buckets['30-60m']++;
-       else buckets['>1h']++;
-       currentStart = null;
+      const mins = (new Date(e.timestamp).getTime() - currentStart) / 60000;
+      if (mins < 5) buckets['<5m']++;
+      else if (mins < 15) buckets['5-15m']++;
+      else if (mins < 30) buckets['15-30m']++;
+      else if (mins < 60) buckets['30-60m']++;
+      else buckets['>1h']++;
+      currentStart = null;
     }
   });
-  
+
   new Chart(document.getElementById('chart5'), {
     type: 'bar',
     data: {

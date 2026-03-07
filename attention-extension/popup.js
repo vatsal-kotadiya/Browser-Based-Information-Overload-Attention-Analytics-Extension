@@ -34,7 +34,7 @@ function loadDashboardData() {
     // Update Status UI
     const statusInd = document.getElementById('statusIndicator');
     const toggleBtn = document.getElementById('toggleTrackingBtn');
-    
+
     if (settings.enableTracking) {
       statusInd.innerHTML = '🟢 Tracking';
       toggleBtn.textContent = 'Stop Tracking';
@@ -79,9 +79,9 @@ function setupEventListeners() {
   });
 
   document.getElementById('resetDataBtn').addEventListener('click', () => {
-    if(confirm("Are you sure you want to delete all tracking history?")) {
+    if (confirm("Are you sure you want to delete all tracking history?")) {
       chrome.storage.local.set({
-        trackingData: { events: [], summary: {tabsOpened: 0, tabSwitches: 0, notifications: 0, activeMinutes: 0} }
+        trackingData: { events: [], summary: { tabsOpened: 0, tabSwitches: 0, notifications: 0, activeMinutes: 0 } }
       }, () => loadDashboardData());
     }
   });
@@ -94,7 +94,7 @@ function renderCharts(events) {
   // Chart 1: Today's Tab Switches
   const today = new Date().toISOString().split('T')[0];
   const todayEvents = events.filter(e => e.time && e.time.startsWith(today) && e.event === 'tab_switch');
-  
+
   // Aggregate by hour for today (0-23)
   const hourlySwitches = Array(24).fill(0);
   todayEvents.forEach(e => {
@@ -102,13 +102,13 @@ function renderCharts(events) {
     hourlySwitches[hour]++;
   });
 
-  if(miniChart1) miniChart1.destroy();
+  if (miniChart1) miniChart1.destroy();
   const ctx1 = document.getElementById('miniChart1');
   if (ctx1) {
     miniChart1 = new Chart(ctx1, {
       type: 'line',
       data: {
-        labels: Array.from({length: 24}, (_, i) => `${i}:00`),
+        labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
         datasets: [{
           data: hourlySwitches,
           borderColor: '#3b82f6',

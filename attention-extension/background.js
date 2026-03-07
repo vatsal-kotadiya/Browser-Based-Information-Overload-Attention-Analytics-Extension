@@ -20,7 +20,7 @@ chrome.runtime.onInstalled.addListener(() => {
         }
       });
     }
-    
+
     if (!result.settings) {
       chrome.storage.local.set({
         settings: {
@@ -36,7 +36,7 @@ chrome.runtime.onInstalled.addListener(() => {
   // Start polling active session time using alarms (Manifest V3 compliant)
   chrome.alarms.create("activeTimeTracker", { periodInMinutes: 1 });
   chrome.alarms.create("mockNotification", { periodInMinutes: 15 });
-  
+
   logEvent({ event: "session_start" });
 });
 
@@ -87,21 +87,21 @@ function logEvent(payload) {
   chrome.storage.local.get(["settings", "trackingData"], (result) => {
     const settings = result.settings || {};
     if (!settings.enableTracking) return;
-    
+
     // Check specific settings
     if (payload.event === "tab_switch" && settings.trackTabSwitching === false) return;
     if (payload.event === "notification" && settings.countNotifications === false) return;
 
     const data = result.trackingData || { events: [], summary: {} };
-    
+
     // Add to event timeline
     const d = new Date();
     // format "YYYY-MM-DD HH:MM"
-    const timeStr = d.getFullYear() + "-" + 
-                    String(d.getMonth()+1).padStart(2,'0') + "-" + 
-                    String(d.getDate()).padStart(2,'0') + " " + 
-                    String(d.getHours()).padStart(2,'0') + ":" + 
-                    String(d.getMinutes()).padStart(2,'0');
+    const timeStr = d.getFullYear() + "-" +
+      String(d.getMonth() + 1).padStart(2, '0') + "-" +
+      String(d.getDate()).padStart(2, '0') + " " +
+      String(d.getHours()).padStart(2, '0') + ":" +
+      String(d.getMinutes()).padStart(2, '0');
 
     const eventRecord = {
       event: payload.event,
@@ -109,7 +109,7 @@ function logEvent(payload) {
       timestamp: d.toISOString(), // keep exact for sorting/charts
       ...payload
     };
-    
+
     data.events.push(eventRecord);
 
     // Update summary counters
@@ -123,12 +123,12 @@ function logEvent(payload) {
     // Optional Extra: Productivity Insights & Warnings (calculated dynamically)
     const fiveMinsAgo = d.getTime() - (5 * 60 * 1000);
     const recentEvents = data.events.filter(e => new Date(e.timestamp).getTime() > fiveMinsAgo);
-    
+
     let switchesCount = 0;
     let notifsCount = 0;
     recentEvents.forEach(e => {
-      if(e.event === 'tab_switch') switchesCount++;
-      if(e.event === 'notification') notifsCount++;
+      if (e.event === 'tab_switch') switchesCount++;
+      if (e.event === 'notification') notifsCount++;
     });
 
     if (payload.event === 'tab_switch' && switchesCount === 15) {
@@ -138,7 +138,7 @@ function logEvent(payload) {
         message: 'You are switching tabs very frequently! Consider closing unused tabs or starting a focus session.',
         iconUrl: 'icons/icon128.png'
       }, () => {
-         if (chrome.runtime.lastError) console.error("Notification Error:", chrome.runtime.lastError);
+        if (chrome.runtime.lastError) console.error("Notification Error:", chrome.runtime.lastError);
       });
     }
 
@@ -149,14 +149,14 @@ function logEvent(payload) {
         message: 'You are receiving too many interruptions. Consider enabling Do Not Disturb mode.',
         iconUrl: 'icons/icon128.png'
       }, () => {
-         if (chrome.runtime.lastError) console.error("Notification Error:", chrome.runtime.lastError);
+        if (chrome.runtime.lastError) console.error("Notification Error:", chrome.runtime.lastError);
       });
     }
   });
 }
 
 function getDomainName(url) {
-  if(!url) return "unknown";
+  if (!url) return "unknown";
   try {
     const urlObj = new URL(url);
     let domain = urlObj.hostname;
@@ -173,9 +173,9 @@ function getDomainName(url) {
 chrome.tabs.onActivated.addListener((activeInfo) => {
   chrome.tabs.get(activeInfo.tabId, (tab) => {
     if (chrome.runtime.lastError) return;
-    
+
     let currentTabName = tab.title || getDomainName(tab.url);
-    
+
     if (lastActiveTabId !== null && lastActiveTabId !== activeInfo.tabId) {
       logEvent({
         event: "tab_switch",
@@ -184,7 +184,7 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
         icon: tab.favIconUrl || ""
       });
     }
-    
+
     lastActiveTabId = activeInfo.tabId;
     lastActiveTabName = currentTabName;
   });

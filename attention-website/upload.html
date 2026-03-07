@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,36 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    .analytics-hero { padding: 60px 5% 10px; text-align: center; }
-    .analytics-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    .analytics-hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-    
-    .demo-container { max-width: 1000px; margin: 0 auto; padding: 0 5% 60px; }
-    
+    .analytics-hero {
+      padding: 60px 5% 10px;
+      text-align: center;
+    }
+
+    .analytics-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .analytics-hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .demo-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 5% 60px;
+    }
+
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       margin-top: 20px;
     }
-    
+
     .chart-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
@@ -29,9 +47,15 @@
       display: flex;
       flex-direction: column;
     }
-    
-    .chart-card h3 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 500; flex-shrink: 0; color:var(--text-main); }
-    
+
+    .chart-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 500;
+      flex-shrink: 0;
+      color: var(--text-main);
+    }
+
     .chart-wrapper {
       flex: 1;
       position: relative;
@@ -49,18 +73,27 @@
       max-width: 600px;
       transition: all 0.3s;
     }
-    .upload-section:hover { border-color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-    
-    #advancedDataSection { display: none; margin-top: 40px; }
-    
+
+    .upload-section:hover {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    #advancedDataSection {
+      display: none;
+      margin-top: 40px;
+    }
+
     .insights-box {
-      margin-top: 40px; padding: 25px; 
-      background: rgba(16,185,129,0.08); 
-      border: 1px solid #10b981; 
+      margin-top: 40px;
+      padding: 25px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid #10b981;
       border-radius: var(--radius-lg);
     }
   </style>
 </head>
+
 <body>
 
   <nav class="navbar">
@@ -82,9 +115,12 @@
 
   <div class="demo-container">
     <div class="upload-section">
-      <p style="margin-bottom:20px; color:var(--text-main); font-size:1.1rem;">Select your exported <b>attention_analytics_dataset.csv</b></p>
+      <p style="margin-bottom:20px; color:var(--text-main); font-size:1.1rem;">Select your exported
+        <b>attention_analytics_dataset.csv</b>
+      </p>
       <input type="file" id="csvUpload" accept=".csv" style="display:none;" />
-      <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV File</button>
+      <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV
+        File</button>
       <p id="uploadStatus" style="margin-top: 15px; color: var(--text-muted);"></p>
     </div>
 
@@ -107,7 +143,7 @@
           <div class="chart-wrapper"><canvas id="advChart4"></canvas></div>
         </div>
       </div>
-      
+
       <div class="insights-box">
         <h3 style="margin-bottom: 15px; color: #10b981; font-size: 1.3rem;">🧠 Productivity Insights</h3>
         <ul id="insightsList" style="list-style: none; color: var(--text-muted); line-height: 1.8;"></ul>
@@ -118,4 +154,5 @@
   <script src="chart.js"></script>
   <script src="upload.js"></script>
 </body>
+
 </html>
