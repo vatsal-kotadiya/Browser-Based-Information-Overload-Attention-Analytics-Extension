@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Attention Analytics</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Attention Analytics</h1>
+      <div class="status-indicator" id="statusIndicator">🟢 Tracking</div>
+    </header>
+
+    <div class="score-board">
+      <div class="score-card">
+        <div class="score-title">Information Load Score</div>
+        <div class="score-value" id="ilsValue">--/100</div>
+      </div>
+      <div class="score-card">
+        <div class="score-title">Attention Fragmentation</div>
+        <div class="score-value" id="afiValue">--/100</div>
+      </div>
+    </div>
+
+    <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div class="stat-item">
+        <span class="stat-label">Current Tab Count</span>
+        <span class="stat-val" id="currentTabs">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Tab Switch Count</span>
+        <span class="stat-val" id="tabSwitches">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Session Time (min)</span>
+        <span class="stat-val" id="activeTime">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Notification Count</span>
+        <span class="stat-val" id="notifications">0</span>
+      </div>
+    </div>
+
+    <div class="chart-container" style="margin-top: 15px; height: 120px;">
+      <div style="font-size: 0.7rem; color: #a1a1aa; text-align: center; margin-bottom: 5px;">Today's Tab Switches</div>
+      <div style="height: calc(100% - 20px); position: relative;">
+        <canvas id="miniChart1"></canvas>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top: 15px;">
+      <div class="btn-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button id="toggleTrackingBtn" class="btn primary">Stop Tracking</button>
+        <button id="viewAnalyticsBtn" class="btn" style="background: rgba(255,255,255,0.1);">View Analytics</button>
+        <button id="exportDataBtn" class="btn" style="background: rgba(255,255,255,0.1);">Export Data</button>
+        <button id="resetDataBtn" class="btn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3);">Reset Data</button>
+      </div>
+    </div>
+
+    <div class="nav-links" style="margin-top: 15px; text-align: center;">
+      <a href="history.html">⏳ History</a>
+      <a id="websiteLink" style="margin-left: 15px;">🌐 Website</a>
+      <a href="settings.html" style="margin-left: 15px;">⚙️ Settings</a>
+    </div>
+  </div>
+
+  <script src="chart.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

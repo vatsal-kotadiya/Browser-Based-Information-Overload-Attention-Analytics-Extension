@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Settings - Attention Extension</title>
+  <style>
+    body { width: 400px; min-height: 400px; }
+    .settings-panel {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Settings</h1>
+      <a href="popup.html" style="color:var(--primary); text-decoration:none;">← Back</a>
+    </header>
+
+    <div class="settings-panel">
+      <div class="toggle-row">
+        <span>Enable Tracking</span>
+        <label class="switch">
+          <input type="checkbox" id="enableTracking">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Count Notifications</span>
+        <label class="switch">
+          <input type="checkbox" id="countNotifications">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Track Tab Switching</span>
+        <label class="switch">
+          <input type="checkbox" id="trackTabSwitching">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <span>Enable Idle Detection</span>
+        <label class="switch">
+          <input type="checkbox" id="enableIdleDetection">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+      <button id="exportBtn" class="btn primary">Export Dataset (CSV)</button>
+      <input type="file" id="importFile" style="display:none;" accept=".json">
+      <button id="importBtn" class="btn" style="background: rgba(255,255,255,0.1);">Import Dataset (JSON)</button>
+      <button id="resetBtn" class="btn" style="color:#ef4444; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.1);">Reset All Data</button>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

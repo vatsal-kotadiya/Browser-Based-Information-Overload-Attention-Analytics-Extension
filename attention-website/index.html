@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attention Analytics | Regain Your Focus</title>
+  <meta name="description" content="A powerful Chrome Extension that measures information overload and attention fragmentation using your real browsing activity.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">🧩</div>
+      <span class="logo-text">Attention Analytics</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Features</a>
+      <a href="analytics.html">Analytics Demo</a>
+      <a href="#how">How it Works</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">Version 1.0.0 Now Live</div>
+      <h1 class="hero-title">Measure your digital <span class="gradient-text">Information Overload</span></h1>
+      <p class="hero-subtitle">The first browser extension that scientifically tracks your tab switching, session idle times, and calculates your personal Attention Fragmentation Index.</p>
+      
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-large" onclick="triggerInstall()">
+          <svg class="chrome-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Zm0 4.1a5.9 5.9 0 0 1 5.9 5.9 6 6 0 0 1-5.9 6.1 6 6 0 0 1-5.9-6.1A5.9 5.9 0 0 1 12 6.1Zm0 2a3.9 3.9 0 0 0-3.9 3.9A3.9 3.9 0 0 0 12 16a4 4 0 0 0 3.9-4 3.9 3.9 0 0 0-3.9-3.9Z"/></svg>
+          Add to Chrome — It's Free
+        </button>
+        <a href="analytics.html" class="btn btn-secondary btn-large">View Live Demo →</a>
+      </div>
+      <div class="social-proof">
+        <span class="stars">★★★★★</span> Trusted by Digital Wellbeing Researchers
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="glass-orb orb-1"></div>
+      <div class="glass-orb orb-2"></div>
+      
+      <!-- Mock Extension UI -->
+      <div class="mock-extension">
+        <div class="mock-header">
+          <span>Attention Analytics</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="mock-score-board">
+          <div class="mock-score-card">
+            <span class="mock-score-title">ILS Score</span>
+            <span class="mock-score-val gradient-text">68/100</span>
+          </div>
+          <div class="mock-score-card">
+            <span class="mock-score-title">AFI Index</span>
+            <span class="mock-score-val text-warning">42/100</span>
+          </div>
+        </div>
+        <div class="mock-chart">
+          <!-- Small CSS chart visualization -->
+          <div class="bar" style="height: 30%"></div>
+          <div class="bar" style="height: 50%"></div>
+          <div class="bar bar-peak" style="height: 90%"></div>
+          <div class="bar" style="height: 60%"></div>
+          <div class="bar" style="height: 40%"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Grid -->
+  <section id="features" class="features">
+    <div class="section-title">
+      <h2>Everything you need for Deep Work</h2>
+      <p>Discover your real browsing habits without compromising privacy. Data stays on your machine.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Real-time Tracking</h3>
+        <p>Silently monitors tab switches, session durations, and notification interruptions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Attention Fragmentation</h3>
+        <p>Calculates your AFI allowing you to see exactly when your multitasking peaks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Local Data</h3>
+        <p>Your history is never sent to the cloud. Export directly to CSV for your own research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fake Installer Modal -->
+  <div id="installModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-close" onclick="closeModal()">✕</div>
+      <div style="display: flex; align-items:flex-start; gap: 1rem;">
+        <img src="../attention-extension/icons/icon48.png" alt="Icon" class="modal-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzNiODJmNiIvPjwvc3ZnPg=='">
+        <div>
+          <h3 style="margin-bottom: 5px;">Add "Attention Analytics"?</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">It can:</p>
+          <ul class="modal-permissions">
+            <li>Read your browsing history</li>
+            <li>Display notifications</li>
+            <li>Manage your apps, extensions, and themes</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmInstall()">Add Extension</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

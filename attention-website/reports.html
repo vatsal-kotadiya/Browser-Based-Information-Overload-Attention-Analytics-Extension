@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Comparison Reports - Attention Analytics</title>
+  <style>
+    .report-container {
+      max-width: 800px;
+      margin: 60px auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .report-title h1 { font-size: 2rem; margin-bottom: 5px; }
+    .report-title p { color: var(--text-muted); font-size: 0.95rem; }
+    
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .stat-label { color: var(--text-muted); }
+    .stat-val { font-weight: 600; color: var(--text-main); }
+    
+    .highlight-card {
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .highlight-title { font-size: 0.85rem; text-transform: uppercase; color: #60a5fa; margin-bottom: 10px; font-weight: bold; }
+    .highlight-main { font-size: 2rem; font-weight: 700; color: var(--text-main); line-height: 1; }
+    .highlight-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="hideOnPrint">
+    <div class="logo">
+      <div class="logo-icon"></div>
+      Attention <span>Analytics</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="analytics.html">Analytics Demo</a>
+      <a href="reports.html" class="active">Reports</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="report-container" id="reportContent">
+      <div class="report-header">
+        <div class="report-title">
+          <h1>Productivity Comparison Report</h1>
+          <p id="reportDate">Generated on: </p>
+        </div>
+        <button class="btn btn-outline" id="hideOnPrint" onclick="window.print()">🖨️ Print Report</button>
+      </div>
+
+      <div id="noDataWarning" style="display:none; text-align:center; padding: 40px; color:#ef4444;">
+        No dataset found. Please upload your CSV first via the <a href="upload.html" style="color:#3b82f6;">Upload Data</a> page.
+      </div>
+
+      <div id="reportData">
+        <div class="highlight-card">
+          <div class="highlight-title">Attention Fragmentation Index (AFI) Comparison</div>
+          <div class="highlight-main" id="userAFI">--</div>
+          <div class="highlight-sub" id="afiSub">Calculating...</div>
+        </div>
+
+        <div class="comparison-grid">
+          <div>
+            <h3 style="margin-bottom: 20px; color: var(--text-main); border-bottom: 2px solid var(--primary); display: inline-block;">Your Metrics</h3>
+            <div class="stat-row"><span class="stat-label">Total Events Logged</span><span class="stat-val" id="valEvents">0</span></div>
+            <div class="stat-row"><span class="stat-label">Total Tab Switches</span><span class="stat-val" id="valSwitches">0</span></div>
+            <div class="stat-row"><span class="stat-label">Total Notifications</span><span class="stat-val" id="valNotifs">0</span></div>
+            <div class="stat-row"><span class="stat-label">Peak Distraction Hour</span><span class="stat-val" id="valPeak">--</span></div>
+          </div>
+          <div>
+            <h3 style="margin-bottom: 20px; color: var(--text-main); border-bottom: 2px solid #64748b; display: inline-block;">Baseline Averages</h3>
+            <div class="stat-row"><span class="stat-label">Average AFI</span><span class="stat-val">4.5 switches/min</span></div>
+            <div class="stat-row"><span class="stat-label">Daily Switches Trend</span><span class="stat-val">~120 / day</span></div>
+            <div class="stat-row"><span class="stat-label">Daily Notifications</span><span class="stat-val">~45 / day</span></div>
+            <div class="stat-row"><span class="stat-label">Peak Distraction Hr</span><span class="stat-val">14:00 (2 PM)</span></div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 40px; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+          *Baseline averages are sourced from global cognitive ergonomics studies for typical knowledge workers.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+     @media print {
+        body { background: white !important; color: black !important; }
+        .report-container { background: white !important; color: black !important; border: none; box-shadow: none; padding: 0; margin: 0; }
+        .stat-val, .highlight-main, h1, h3 { color: black !important; }
+        .stat-label, .highlight-sub { color: #555 !important; }
+        .stat-row { border-bottom: 1px solid #eee !important; }
+        #hideOnPrint { display: none !important; }
+     }
+  </style>
+
+  <script src="reports.js"></script>
+</body>
+</html>
