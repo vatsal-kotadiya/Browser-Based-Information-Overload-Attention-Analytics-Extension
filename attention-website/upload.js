@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('advancedDataSection').style.display = 'none';
       document.getElementById('uploadStatus').textContent = '';
       if (fileInput) fileInput.value = '';
-      clearDataBtn.style.display = 'none';
       
       // Destroy existing charts to fully reset canvas state
       if (advC1) advC1.destroy();
@@ -71,8 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (status) {
       status.textContent = "Successfully loaded " + parsedData.length + " logged events! Scroll down to view charts.";
       status.style.color = '#10b981';
-      const clearBtn = document.getElementById('clearDataBtn');
-      if (clearBtn) clearBtn.style.display = 'block';
     }
 
     // Give the DOM a moment to ensure display:block applies and canvases have size
