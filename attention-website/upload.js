@@ -162,12 +162,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx3 = document.getElementById('advChart3');
     if (ctx3) {
       advC3 = new Chart(ctx3, {
-        type: 'polarArea',
+        type: 'bar',
         data: {
           labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
-          datasets: [{ data: distByHour, backgroundColor: 'rgba(239, 68, 68, 0.5)' }]
+          datasets: [{ 
+            label: 'Distractions',
+            data: distByHour, 
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderRadius: 4
+          }]
         },
-        options: { responsive: true, maintainAspectRatio: false, scales: { r: { display: false } } }
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { display: false, beginAtZero: true },
+            x: { 
+              grid: { display: false },
+              ticks: { maxTicksLimit: 8 }
+            }
+          }
+        }
       });
     }
 
