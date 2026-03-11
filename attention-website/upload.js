@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const text = event.target.result;
           const parsedData = parseCSV(text);
           if (parsedData.length > 0) {
-            localStorage.setItem('attention_dataset', JSON.stringify(parsedData));
+            document.getElementById('fileNameDisplay').innerHTML = `Currently tracking: <b>${file.name}</b>`;
             showAdvanced(parsedData);
           } else {
             document.getElementById('uploadStatus').textContent = "❌ Failed to parse CSV. Make sure it's the attention_analytics_dataset.csv file.";
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearDataBtn = document.getElementById('clearDataBtn');
   if (clearDataBtn) {
     clearDataBtn.addEventListener('click', () => {
-      localStorage.removeItem('attention_dataset');
+      document.getElementById('fileNameDisplay').innerHTML = `Select an exported <b>CSV</b> file to continue.`;
       document.getElementById('advancedDataSection').style.display = 'none';
       document.getElementById('uploadStatus').textContent = '';
       if (fileInput) fileInput.value = '';
@@ -47,16 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Auto-render if data already exists in localStorage
-  const stored = localStorage.getItem('attention_dataset');
-  if (stored) {
-    try {
-      const parsedData = JSON.parse(stored);
-      if (parsedData && parsedData.length > 0) {
-        showAdvanced(parsedData);
-      }
-    } catch (e) { }
-  }
+  // Auto-render block removed to force fresh state on reload
 
   function showAdvanced(parsedData) {
     const advancedSection = document.getElementById('advancedDataSection');
