@@ -528,6 +528,17 @@ body {
   pointer-events: auto;
 }
 
+.logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: rotate(-10deg) scale(1.1);
+}
+
 .modal {
   background: white;
   color: #333;
