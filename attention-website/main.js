@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('extensionInstalled') === 'true') {
     markAsInstalled();
   }
+
+  // Animate Mockup Hero Scores to look "Live"
+  startMockScoreAnimation();
 });
 
 function triggerInstall() {
@@ -74,8 +77,33 @@ function markAsInstalled() {
 }
 
 // Close modal on outside click
-document.getElementById('installModal').addEventListener('click', function (e) {
+document.getElementById('installModal')?.addEventListener('click', function (e) {
   if (e.target === this) {
     closeModal();
   }
 });
+
+function startMockScoreAnimation() {
+  const ilsEl = document.getElementById('hero-ils');
+  const afiEl = document.getElementById('hero-afi');
+
+  if (!ilsEl || !afiEl) return;
+
+  let currentIls = 68;
+  let currentAfi = 42;
+
+  setInterval(() => {
+    // Fluctuate ILS by -2 to +2
+    const ilsChange = Math.floor(Math.random() * 5) - 2; 
+    currentIls = Math.max(0, Math.min(100, currentIls + ilsChange));
+
+    // Fluctuate AFI by -1 to +2 (tends to climb slightly)
+    const afiChange = Math.floor(Math.random() * 4) - 1; 
+    currentAfi = Math.max(0, Math.min(100, currentAfi + afiChange));
+
+    if (currentAfi > 60) currentAfi -= 5; // keep it bounded
+
+    ilsEl.innerHTML = `${currentIls}<span style="font-size:0.5em;color:var(--text-muted)">/100</span>`;
+    afiEl.innerHTML = `${currentAfi}<span style="font-size:0.5em;color:var(--text-muted)">/100</span>`;
+  }, 3500); // Update every 3.5 seconds
+}
