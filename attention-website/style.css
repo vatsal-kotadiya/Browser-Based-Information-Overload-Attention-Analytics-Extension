@@ -116,30 +116,30 @@ body {
   height: 24px;
 }
 
-/* Navbar */
+/* Navigation Bar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5%;
-  border-bottom: 1px solid var(--border-subtle);
-  background: rgba(233, 188, 185, 0.6); /* bg pastel somewhat transparent */
-  backdrop-filter: blur(20px);
+  padding: 15px 5%;
+  background: rgba(255, 255, 255, 0.85); /* Frost glass */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   font-weight: 700;
-  font-size: 1.2rem;
-}
-
-.logo-icon {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .nav-links {
@@ -529,9 +529,10 @@ body {
 }
 
 .logo-img {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(163, 64, 84, 0.3));
 }
 
 .modal {
