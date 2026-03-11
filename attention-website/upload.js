@@ -31,6 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const clearDataBtn = document.getElementById('clearDataBtn');
+  if (clearDataBtn) {
+    clearDataBtn.addEventListener('click', () => {
+      localStorage.removeItem('attention_dataset');
+      document.getElementById('advancedDataSection').style.display = 'none';
+      document.getElementById('uploadStatus').textContent = '';
+      if (fileInput) fileInput.value = '';
+      clearDataBtn.style.display = 'none';
+      
+      // Destroy existing charts to fully reset canvas state
+      if (advC1) advC1.destroy();
+      if (advC2) advC2.destroy();
+      if (advC3) advC3.destroy();
+      if (advC4) advC4.destroy();
+    });
+  }
+
   // Auto-render if data already exists in localStorage
   const stored = localStorage.getItem('attention_dataset');
   if (stored) {
@@ -52,8 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const status = document.getElementById('uploadStatus');
     if (status) {
-      status.textContent = "✅ Successfully loaded " + parsedData.length + " logged events! Scroll down to view charts.";
+      status.textContent = "Successfully loaded " + parsedData.length + " logged events! Scroll down to view charts.";
       status.style.color = '#10b981';
+      const clearBtn = document.getElementById('clearDataBtn');
+      if (clearBtn) clearBtn.style.display = 'block';
     }
 
     // Give the DOM a moment to ensure display:block applies and canvases have size
@@ -194,14 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let list = document.getElementById('insightsList');
     if (!list) return;
 
-    let html = `<li style="margin-bottom:8px;">🔥 Your Peak Distraction Hour is around <strong>${peakH}:00</strong>. Focus during other times!</li>`;
+    let html = `<li style="margin-bottom:8px;">Your Peak Distraction Hour is around <strong>${peakH}:00</strong>. Focus during other times!</li>`;
     if (ts > 50) {
-      html += `<li style="margin-bottom:8px;">⚠️ You switch tabs <strong>60% more than average</strong>. Consider closing unused tabs.</li>`;
+      html += `<li style="margin-bottom:8px;">You switch tabs <strong>60% more than average</strong>. Consider closing unused tabs.</li>`;
     } else {
-      html += `<li style="margin-bottom:8px;">✅ Your tab switching frequency is healthy.</li>`;
+      html += `<li style="margin-bottom:8px;">Your tab switching frequency is healthy.</li>`;
     }
     if (ts > 100 || maxD > 10) {
-      html += `<li>🧠 <strong>High Overload Detected:</strong> We highly suggest starting a deep focus session.</li>`;
+      html += `<li><strong>High Overload Detected:</strong> We highly suggest starting a deep focus session.</li>`;
     }
     list.innerHTML = html;
   }

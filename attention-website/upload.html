@@ -120,8 +120,11 @@
         <b>attention_analytics_dataset.csv</b>
       </p>
       <input type="file" id="csvUpload" accept=".csv" style="display:none;" />
-      <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV
-        File</button>
+      <div style="display: flex; gap: 15px; justify-content: center;">
+        <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV
+          File</button>
+        <button id="clearDataBtn" class="btn btn-outline" style="display: none; padding: 0 20px; font-weight: 500;">🔄 Clear Data</button>
+      </div>
       <p id="uploadStatus" style="margin-top: 15px; color: var(--text-muted);"></p>
     </div>
 
@@ -146,8 +149,8 @@
       </div>
 
       <div class="insights-box">
-        <h3 style="margin-bottom: 15px; color: #10b981; font-size: 1.3rem;">🧠 Productivity Insights</h3>
-        <ul id="insightsList" style="list-style: none; color: var(--text-muted); line-height: 1.8;"></ul>
+        <h3 style="margin-bottom: 15px; color: #10b981; font-size: 1.3rem;">Productivity Insights</h3>
+        <ul id="insightsList" style="list-style-type: disc; padding-left: 20px; color: var(--text-muted); line-height: 1.8;"></ul>
       </div>
     </div>
   </div>
