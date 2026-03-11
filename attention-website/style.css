@@ -358,6 +358,10 @@ body {
   text-align: center;
 }
 
+.section-title {
+  text-align: center;
+}
+
 .section-title h2 {
   font-size: 3rem;
   margin-bottom: 15px;
