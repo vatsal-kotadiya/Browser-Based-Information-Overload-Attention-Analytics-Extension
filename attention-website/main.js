@@ -58,17 +58,17 @@ function markAsInstalled() {
   const heroBtns = document.querySelectorAll('.hero-cta .btn-primary');
   heroBtns.forEach(b => {
     b.innerHTML = '✓ Extension Installed';
-    b.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
-    b.style.color = '#10b981';
-    b.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+    b.style.backgroundColor = 'rgba(163, 64, 84, 0.2)';
+    b.style.color = '#A34054';
+    b.style.borderColor = 'rgba(163, 64, 84, 0.4)';
     b.onclick = null; // Disable further clicks
   });
 
   const navBtn = document.querySelector('.navbar .btn-outline');
   if (navBtn) {
     navBtn.innerHTML = '✓ Installed';
-    navBtn.style.color = '#10b981';
-    navBtn.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+    navBtn.style.color = '#A34054';
+    navBtn.style.borderColor = 'rgba(163, 64, 84, 0.4)';
     navBtn.onclick = null;
   }
 }

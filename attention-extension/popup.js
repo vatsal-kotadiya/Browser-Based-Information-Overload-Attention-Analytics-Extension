@@ -64,6 +64,10 @@ function setupEventListeners() {
     window.location.href = "analytics.html";
   });
 
+  document.getElementById('viewWeeklyBtn').addEventListener('click', () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL("weekly_report.html") });
+  });
+
   document.getElementById('websiteLink').addEventListener('click', () => {
     chrome.tabs.create({ url: "https://vatsal-kotadiya.github.io/Browser-Based-Information-Overload-Attention-Analytics-Extension/" });
   });

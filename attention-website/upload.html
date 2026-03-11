@@ -41,11 +41,19 @@
     .chart-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+      border-radius: 24px;
       padding: 24px;
       height: 350px;
       display: flex;
       flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 16px rgba(27, 25, 49, 0.05);
+    }
+
+    .chart-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 16px 32px rgba(68, 23, 78, 0.15);
+      background: rgba(255, 255, 255, 0.6);
     }
 
     .chart-card h3 {
@@ -67,16 +75,16 @@
       text-align: center;
       margin: 40px auto 20px;
       padding: 40px;
-      background: rgba(59, 130, 246, 0.05);
-      border: 2px dashed rgba(59, 130, 246, 0.4);
+      background: rgba(163, 64, 84, 0.1);
+      border: 2px dashed rgba(163, 64, 84, 0.5);
       border-radius: var(--radius-lg);
       max-width: 600px;
       transition: all 0.3s;
     }
 
     .upload-section:hover {
-      border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.1);
+      border-color: #A34054;
+      background: rgba(163, 64, 84, 0.2);
     }
 
     #advancedDataSection {
@@ -86,10 +94,17 @@
 
     .insights-box {
       margin-top: 40px;
-      padding: 25px;
-      background: rgba(16, 185, 129, 0.08);
-      border: 1px solid #10b981;
-      border-radius: var(--radius-lg);
+      padding: 30px;
+      background: rgba(237, 158, 89, 0.1);
+      border: 1px solid #ED9E59;
+      border-radius: 24px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 16px rgba(27, 25, 49, 0.03);
+    }
+    
+    .insights-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(237, 158, 89, 0.2);
     }
   </style>
 </head>
@@ -110,7 +125,7 @@
 
   <section class="analytics-hero" style="position: relative;">
     <a href="index.html" class="btn btn-outline" style="position: absolute; left: 5%; top: 40px; padding: 8px 16px; font-size: 0.9rem;">← Back</a>
-    <h1><span style="color:#10b981;">Custom Analysis</span> for Uploaded Data</h1>
+    <h1><span style="color:#ED9E59;">Custom Analysis</span> for Uploaded Data</h1>
     <p>Upload your CSV dataset to unlock 4 deeper visualizations below.</p>
   </section>
 
@@ -149,7 +164,7 @@
       </div>
 
       <div class="insights-box">
-        <h3 style="margin-bottom: 15px; color: #10b981; font-size: 1.3rem;">Productivity Insights</h3>
+        <h3 style="margin-bottom: 15px; color: #ED9E59; font-size: 1.3rem;">Productivity Insights</h3>
         <ul id="insightsList" style="list-style-type: disc; padding-left: 20px; color: var(--text-muted); line-height: 1.8;"></ul>
       </div>
     </div>

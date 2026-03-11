@@ -11,8 +11,15 @@
       margin: 60px auto;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+      border-radius: 32px;
       padding: 40px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(27, 25, 49, 0.05);
+    }
+    
+    .report-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(68, 23, 78, 0.15);
     }
 
     .report-header {
@@ -58,11 +65,17 @@
     }
 
     .highlight-card {
-      background: rgba(59, 130, 246, 0.1);
-      border-radius: 8px;
-      padding: 20px;
+      background: rgba(163, 64, 84, 0.1);
+      border-radius: 20px;
+      padding: 25px;
       margin-bottom: 20px;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      border: 1px solid rgba(163, 64, 84, 0.3);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+    
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(163, 64, 84, 0.15);
     }
 
     .highlight-title {
@@ -112,7 +125,7 @@
       </div>
 
       <div id="noDataWarning" style="display:none; text-align:center; padding: 40px; color:#ef4444;">
-        No dataset found. Please upload your CSV first via the <a href="upload.html" style="color:#3b82f6;">Upload
+        No dataset found. Please upload your CSV first via the <a href="upload.html" style="color:#A34054;">Upload
           Data</a> page.
       </div>
 

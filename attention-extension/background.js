@@ -36,8 +36,15 @@ chrome.runtime.onInstalled.addListener(() => {
   // Start polling active session time using alarms (Manifest V3 compliant)
   chrome.alarms.create("activeTimeTracker", { periodInMinutes: 1 });
   chrome.alarms.create("mockNotification", { periodInMinutes: 15 });
+  chrome.alarms.create("weeklyReportCheck", { periodInMinutes: 60 }); // Check every hour
 
   logEvent({ event: "session_start" });
+});
+
+chrome.notifications.onClicked.addListener((notificationId) => {
+  if (notificationId === 'weekly_report_ready') {
+    chrome.tabs.create({ url: chrome.runtime.getURL("weekly_report.html") });
+  }
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
@@ -57,8 +64,33 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     });
   } else if (alarm.name === "mockNotification") {
     logEvent({ event: "notification" });
+  } else if (alarm.name === "weeklyReportCheck") {
+    checkWeeklyReport();
   }
 });
+
+function checkWeeklyReport() {
+  chrome.storage.local.get(["lastReportDate"], (result) => {
+    const now = new Date();
+    const lastReport = result.lastReportDate ? new Date(result.lastReportDate) : null;
+    
+    // Check if it's Sunday (0) and past 6 PM, or if 7+ days have passed
+    const isSundayEvening = now.getDay() === 0 && now.getHours() >= 18;
+    const isSevenDaysPassed = lastReport && (now.getTime() - lastReport.getTime()) > (7 * 24 * 60 * 60 * 1000);
+    
+    if (!lastReport || isSundayEvening || isSevenDaysPassed) {
+      // Trigger notification
+      chrome.notifications.create('weekly_report_ready', {
+        type: 'basic',
+        title: 'Your Weekly Attention Report is Ready! 📊',
+        message: 'Click here to view your personalized 7-day focus summary and habit trends.',
+        iconUrl: 'icons/icon128.png'
+      });
+      // Update last report generation time
+      chrome.storage.local.set({ lastReportDate: now.toISOString() });
+    }
+  });
+}
 
 // Track idle/active explicitly for session markers
 chrome.idle.onStateChanged.addListener((newState) => {

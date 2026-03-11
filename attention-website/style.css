@@ -1,14 +1,14 @@
 :root {
-  --bg-dark: #09090b;
-  --bg-card: rgba(24, 24, 27, 0.7);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --text-primary: #fafafa;
-  --text-muted: #a1a1aa;
+  --bg-dark: #E9BCB9; /* Lightest Peach Background */
+  --bg-card: rgba(255, 255, 255, 0.45); /* Frosty White Panels */
+  --border-subtle: rgba(255, 255, 255, 0.5);
+  --text-primary: #1B1931; /* Darkest Navy/Plum */
+  --text-muted: #44174E; /* Deep Berry */
 
-  --brand-primary: #3b82f6;
-  --brand-hover: #2563eb;
-  --brand-gradient: linear-gradient(135deg, #60a5fa, #8b5cf6);
-  --warning: #f59e0b;
+  --brand-primary: #A34054; /* Rose Accent */
+  --brand-hover: #662249; /* Darker Berry Hover */
+  --brand-gradient: linear-gradient(135deg, #A34054, #ED9E59);
+  --warning: #ED9E59; /* Orange/Peach Accent */
 
   --font-main: 'Outfit', sans-serif;
   --radius-lg: 24px;
@@ -28,8 +28,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   background-image:
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.3), transparent 25%);
 }
 
 /* Typography & Utilities */
@@ -74,12 +74,12 @@ body {
 .btn-primary:hover {
   background: var(--brand-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 20px rgba(163, 64, 84, 0.3); /* Rose shadow */
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
   border: 1px solid var(--border-subtle);
   backdrop-filter: blur(10px);
 }
@@ -91,12 +91,12 @@ body {
 
 .btn-outline {
   background: transparent;
-  color: white;
-  border: 1px solid var(--border-subtle);
+  color: var(--brand-hover);
+  border: 1px solid var(--brand-hover);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(102, 34, 73, 0.1); /* brand-hover transparent */
 }
 
 .btn-large {
@@ -117,7 +117,7 @@ body {
   align-items: center;
   padding: 20px 5%;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(9, 9, 11, 0.8);
+  background: rgba(233, 188, 185, 0.6); /* bg pastel somewhat transparent */
   backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
@@ -177,9 +177,9 @@ body {
 .badge {
   display: inline-block;
   padding: 6px 12px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  color: var(--brand-primary);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-hover);
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -230,7 +230,7 @@ body {
 .orb-1 {
   width: 300px;
   height: 300px;
-  background: rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   top: 10%;
   right: 20%;
   animation: float 6s ease-in-out infinite;
@@ -239,7 +239,7 @@ body {
 .orb-2 {
   width: 200px;
   height: 200px;
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(255, 255, 255, 0.5);
   bottom: 10%;
   left: 30%;
   animation: float 8s ease-in-out infinite reverse;
@@ -261,9 +261,9 @@ body {
 
 .mock-extension {
   width: 350px;
-  background: rgba(24, 24, 27, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid white;
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -286,9 +286,9 @@ body {
 .status-dot {
   width: 10px;
   height: 10px;
-  background: #10b981;
+  background: #ED9E59;
   border-radius: 50%;
-  box-shadow: 0 0 10px #10b981;
+  box-shadow: 0 0 10px #ED9E59;
 }
 
 .mock-score-board {
@@ -299,8 +299,8 @@ body {
 
 .mock-score-card {
   flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
   padding: 15px;
   border-radius: var(--radius-md);
   display: flex;
@@ -321,9 +321,9 @@ body {
 
 .mock-chart {
   height: 150px;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid white;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -371,36 +371,52 @@ body {
 }
 
 .feature-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+  padding: 40px;
   text-align: left;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(27, 25, 49, 0.05);
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-12px);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(68, 23, 78, 0.15);
+  background: rgba(255, 255, 255, 0.45);
 }
 
 .feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  display: inline-block;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
-  border: 1px solid var(--border-subtle);
+  font-size: 3rem;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 20px rgba(27, 25, 49, 0.08); /* Icon shadow */
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) rotate(8deg);
+  box-shadow: 0 15px 25px rgba(27, 25, 49, 0.12);
 }
 
 .feature-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 15px;
 }
 
 .feature-card p {
   color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 /* Chrome Install Modal (Mock) */

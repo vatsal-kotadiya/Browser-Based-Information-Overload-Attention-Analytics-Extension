@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  Chart.defaults.color = '#a1a1aa';
+  Chart.defaults.color = '#44174E'; /* Dark Berry text for charts */
   Chart.defaults.font.family = "'Outfit', sans-serif";
 
   const fileInput = document.getElementById('csvUpload');
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const status = document.getElementById('uploadStatus');
     if (status) {
       status.textContent = "Successfully loaded " + parsedData.length + " logged events! Scroll down to view charts.";
-      status.style.color = '#10b981';
+      status.style.color = '#A34054';
     }
 
     // Give the DOM a moment to ensure display:block applies and canvases have size
@@ -121,9 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'bar',
         data: {
           labels: Object.keys(weekly).sort(),
-          datasets: [{ label: 'Overload Events', data: Object.values(weekly), backgroundColor: '#3b82f6', borderRadius: 4 }]
+          datasets: [{ label: 'Overload Events', data: Object.values(weekly), backgroundColor: '#A34054', borderRadius: 4 }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: '#1B1931' }, grid: { display: false } },
+            y: { ticks: { color: '#1B1931' }, grid: { color: 'rgba(27, 25, 49, 0.1)' } }
+          }
+        }
       });
     }
 
@@ -140,10 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
           datasets: [{
             label: 'Switches vs Time',
             data: scatterData,
-            backgroundColor: '#10b981'
+            backgroundColor: '#ED9E59'
           }]
         },
-        options: { responsive: true, maintainAspectRatio: false }
+        options: { 
+          responsive: true, 
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: '#1B1931' }, grid: { color: 'rgba(27, 25, 49, 0.1)' } },
+            y: { ticks: { color: '#1B1931' }, grid: { color: 'rgba(27, 25, 49, 0.1)' } }
+          }
+        }
       });
     }
 
@@ -168,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
           datasets: [{ 
             label: 'Distractions',
             data: distByHour, 
-            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            backgroundColor: 'rgba(237, 158, 89, 0.7)', /* Orange semi-transparent */
             borderRadius: 4
           }]
         },
@@ -182,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             y: { display: false, beginAtZero: true },
             x: { 
               grid: { display: false },
-              ticks: { maxTicksLimit: 8 }
+              ticks: { maxTicksLimit: 8, color: '#1B1931' }
             }
           }
         }
@@ -196,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'doughnut',
         data: {
           labels: ['Focus', 'Distraction'],
-          datasets: [{ data: [75, 25], backgroundColor: ['#10b981', '#3b82f6'], borderWidth: 0 }]
+          datasets: [{ data: [75, 25], backgroundColor: ['#A34054', '#ED9E59'], borderWidth: 0 }]
         },
         options: { responsive: true, maintainAspectRatio: false, cutout: '75%' }
       });

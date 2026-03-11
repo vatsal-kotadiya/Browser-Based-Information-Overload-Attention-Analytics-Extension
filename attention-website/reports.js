@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('userAFI').style.color = '#f59e0b';
   } else {
     subText = "Healthy Focus. Below the 4.5 baseline.";
-    document.getElementById('userAFI').style.color = '#10b981';
+    document.getElementById('userAFI').style.color = '#ED9E59';
   }
   document.getElementById('afiSub').textContent = subText;
 });

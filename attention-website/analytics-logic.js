@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (c1) {
       new Chart(c1, {
         type: 'line',
-        data: { labels: ['10:00', '10:15', '10:30', '10:45', '11:00'], datasets: [{ label: 'Switches', data: [12, 19, 3, 5, 2], borderColor: '#3b82f6', tension: 0.4 }] },
+        data: { labels: ['10:00', '10:15', '10:30', '10:45', '11:00'], datasets: [{ label: 'Switches', data: [12, 19, 3, 5, 2], borderColor: '#A34054', tension: 0.4 }] },
         options: { responsive: true, maintainAspectRatio: false }
       });
     }
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (c2) {
       new Chart(c2, {
         type: 'bar',
-        data: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], datasets: [{ label: 'Overload Score', data: [65, 59, 80, 81, 56], backgroundColor: '#10b981', borderRadius: 4 }] },
+        data: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], datasets: [{ label: 'Overload Score', data: [65, 59, 80, 81, 56], backgroundColor: '#ED9E59', borderRadius: 4 }] },
         options: { responsive: true, maintainAspectRatio: false }
       });
     }
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (c3) {
       new Chart(c3, {
         type: 'polarArea',
-        data: { labels: ['9AM', '12PM', '3PM', '6PM'], datasets: [{ data: [11, 16, 7, 3], backgroundColor: ['#ef4444', '#3b82f6', '#10b981', '#f59e0b'] }] },
+        data: { labels: ['9AM', '12PM', '3PM', '6PM'], datasets: [{ data: [11, 16, 7, 3], backgroundColor: ['#ED9E59', '#A34054', '#662249', '#44174E'] }] },
         options: { responsive: true, maintainAspectRatio: false, scales: { r: { display: false } } }
       });
     }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (c4) {
       new Chart(c4, {
         type: 'doughnut',
-        data: { labels: ['Focused', 'Context Switching'], datasets: [{ data: [60, 40], backgroundColor: ['#10b981', '#ef4444'], borderWidth: 0 }] },
+        data: { labels: ['Focused', 'Context Switching'], datasets: [{ data: [60, 40], backgroundColor: ['#A34054', '#ED9E59'], borderWidth: 0 }] },
         options: { responsive: true, maintainAspectRatio: false, cutout: '70%' }
       });
     }
