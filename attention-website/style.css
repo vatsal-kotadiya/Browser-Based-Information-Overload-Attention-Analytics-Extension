@@ -82,15 +82,17 @@ body {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.6);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(10px);
+  background: white;
+  color: #1B1931; /* Deep Plum */
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(27, 25, 49, 0.05);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(27, 25, 49, 0.1);
 }
 
 .btn-outline {
@@ -104,9 +106,9 @@ body {
 }
 
 .btn-large {
-  padding: 16px 32px;
-  font-size: 1.1rem;
-  border-radius: 12px;
+  padding: 16px 36px;
+  font-size: 1.15rem;
+  border-radius: 30px; /* High radius for pill shape */
 }
 
 .chrome-icon {
