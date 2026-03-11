@@ -65,7 +65,7 @@ function setupEventListeners() {
   });
 
   document.getElementById('websiteLink').addEventListener('click', () => {
-    chrome.tabs.create({ url: "http://localhost:8000" });
+    chrome.tabs.create({ url: "https://vatsal-kotadiya.github.io/Browser-Based-Information-Overload-Attention-Analytics-Extension/" });
   });
 
   document.getElementById('exportDataBtn').addEventListener('click', () => {
