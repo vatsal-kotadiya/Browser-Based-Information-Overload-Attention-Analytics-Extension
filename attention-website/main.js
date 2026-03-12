@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animate Mockup Hero Scores to look "Live"
   startMockScoreAnimation();
+
+  // Request notification permission on first interest
+  if ('Notification' in window && Notification.permission === 'default') {
+    document.addEventListener('click', () => {
+      Notification.requestPermission();
+    }, { once: true });
+  }
 });
 
 function triggerInstall() {
@@ -52,6 +59,14 @@ function confirmInstall() {
         btn.style.backgroundColor = '';
         btn.style.borderColor = '';
       }, 500);
+
+      // Fire real notification
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('Attention Analytics', {
+          body: '✓ Extension successfully added to Chrome! Start tracking your focus today.',
+          icon: 'assets/attention-logo.png'
+        });
+      }
 
     }, 1000);
   }, 1500);

@@ -77,6 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
           // Scroll down to the charts for the user smoothly
           advancedSection.scrollIntoView({ behavior: 'smooth' });
           if (clearDataBtn) clearDataBtn.style.display = 'flex';
+
+          // Fire real notification
+          if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('Analysis Ready', {
+              body: `Successfully processed ${parsedData.length} events from ${file.name}.`,
+              icon: 'assets/attention-logo.png'
+            });
+          }
         }
       } catch (err) {
         if (advancedSection) advancedSection.style.visibility = 'visible';
