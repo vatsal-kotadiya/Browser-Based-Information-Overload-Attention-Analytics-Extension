@@ -168,7 +168,7 @@ h1 {
 
 .stat-label {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #A34054; /* Rose Label */
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -177,7 +177,7 @@ h1 {
 
 .stat-val {
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #1B1931; /* Deep Plum Value */
   line-height: 1.2;
 }
