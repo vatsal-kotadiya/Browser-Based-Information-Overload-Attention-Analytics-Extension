@@ -82,6 +82,7 @@
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       margin-bottom: 40px;
+      overflow: hidden; /* Prevent chart overflow */
     }
     .chart-box h2 {
       margin: 0 0 20px 0;
@@ -133,7 +134,7 @@
         font-size: 2rem;
       }
 
-      div[style*="grid-template-columns: 1fr 2fr"] {
+      .charts-row {
         grid-template-columns: 1fr !important;
       }
 
@@ -177,7 +178,7 @@
       </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 40px;">
+    <div class="charts-row" style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 40px;">
       <div class="chart-box" style="margin-bottom: 0;">
         <h2>Distraction Breakdown</h2>
         <div style="height: 250px; position: relative;">
