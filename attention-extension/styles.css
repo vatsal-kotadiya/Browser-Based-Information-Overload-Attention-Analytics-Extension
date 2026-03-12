@@ -62,34 +62,56 @@ h1 {
 .score-card {
   flex: 1;
   background: var(--surface-color);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 20px 15px;
+  padding: 18px 14px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 8px 16px rgba(27, 25, 49, 0.05);
+  /* Glossy inner shine + subtle shadow */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    inset 0 -1px 0 rgba(163,64,84,0.06),
+    0 8px 20px rgba(27, 25, 49, 0.09);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal gloss streak */
+.score-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -30%;
+  width: 55%; height: 100%;
+  background: linear-gradient(115deg, rgba(255,255,255,0.45) 0%, transparent 70%);
+  transform: skewX(-12deg);
+  pointer-events: none;
 }
 
 .score-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 14px 28px rgba(68, 23, 78, 0.15); /* Soft dark plum shadow */
-  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 18px 32px rgba(68, 23, 78, 0.18);
+  background: rgba(255, 255, 255, 0.90);
 }
 
 .score-title {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   margin-bottom: 5px;
 }
 
 .score-value {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--primary);
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(163,64,84,0.18);
 }
 
 .stats-grid {
@@ -140,43 +162,73 @@ h1 {
 
 button {
   flex: 1;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--text-main);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  border-radius: 10px;
+  padding: 7px 12px;         /* ← smaller */
+  font-size: 0.78rem;        /* ← smaller */
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+  /* Inner gloss */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.95),
+    0 3px 8px rgba(27,25,49,0.08);
+}
+
+/* Top-to-bottom white sheen sweep */
+button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 button:hover {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 7px 16px rgba(27,25,49,0.12);
 }
 
+button:active { transform: translateY(0) scale(.97); }
+
 button.primary {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
   color: white;
-  border-color: var(--primary);
+  border-color: rgba(163,64,84,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 4px 14px rgba(163,64,84,0.30);
 }
 
 button.primary:hover {
-  background: var(--primary-hover);
+  background: linear-gradient(135deg, #b84d63 0%, #7a2857 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 8px 20px rgba(163,64,84,0.40);
 }
 
 button.danger {
-  background: rgba(237, 158, 89, 0.2); /* Orange pastel layer */
+  background: rgba(237, 158, 89, 0.2);
   color: var(--text-main);
   border-color: var(--danger);
 }
 
 button.danger:hover {
-  background: rgba(237, 158, 89, 0.4);
+  background: rgba(237, 158, 89, 0.38);
 }
 
 /* Nav links */
