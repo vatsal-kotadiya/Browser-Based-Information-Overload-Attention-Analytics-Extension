@@ -106,6 +106,42 @@
       line-height: 1.8;
       font-size: 1.1rem;
     }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .report-container {
+        width: 95%;
+        padding: 24px;
+        margin: 20px auto;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-card .value {
+        font-size: 2rem;
+      }
+
+      div[style*="grid-template-columns: 1fr 2fr"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      .chart-box {
+        padding: 20px;
+      }
+    }
+
   </style>
 </head>
 <body>

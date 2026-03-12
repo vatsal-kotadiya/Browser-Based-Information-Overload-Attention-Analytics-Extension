@@ -106,6 +106,47 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 24px rgba(237, 158, 89, 0.2);
     }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .analytics-hero {
+        padding: 40px 5% 20px;
+      }
+      
+      .analytics-hero h1 {
+        font-size: 1.8rem;
+        margin-top: 40px;
+      }
+
+      .btn-outline[style*="position: absolute"] {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chart-card {
+        height: 300px;
+      }
+
+      .upload-section {
+        padding: 24px;
+      }
+      
+      .upload-section div[style*="display: flex"] {
+        flex-direction: column;
+      }
+      
+      .upload-section .btn {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 

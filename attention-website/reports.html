@@ -99,6 +99,29 @@
       color: var(--text-muted);
       margin-top: 5px;
     }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .report-container {
+        padding: 24px;
+        margin: 40px 5%;
+      }
+
+      .report-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-main {
+        font-size: 1.5rem;
+      }
+    }
+
   </style>
 </head>
 
