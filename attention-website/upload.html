@@ -147,6 +147,34 @@
       }
     }
 
+    .btn-unique-clear {
+      background: rgba(163, 64, 84, 0.08);
+      border: 1px solid rgba(163, 64, 84, 0.3);
+      color: #A34054;
+      padding: 10px 24px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .btn-unique-clear:hover {
+      background: rgba(163, 64, 84, 0.15);
+      border-color: #A34054;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(163, 64, 84, 0.1);
+    }
+
+    .btn-unique-clear .btn-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(163, 64, 84, 0.2));
+    }
+
   </style>
 </head>
 
@@ -179,7 +207,9 @@
       <div style="display: flex; gap: 15px; justify-content: center;">
         <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV
           File</button>
-        <button id="clearDataBtn" class="btn btn-outline" style="padding: 0 20px; font-weight: 500;">🔄 Clear Data</button>
+        <button id="clearDataBtn" class="btn-unique-clear">
+          <img src="assets/clear-icon.png" class="btn-icon"> Clear Data
+        </button>
       </div>
       <p id="uploadStatus" style="margin-top: 15px; color: var(--text-muted);"></p>
     </div>
