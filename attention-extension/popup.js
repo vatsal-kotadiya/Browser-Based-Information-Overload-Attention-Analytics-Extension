@@ -1,9 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
   loadDashboardData();
   setupEventListeners();
+
+  // Real-time polling: refresh scores every 3 seconds
+  setInterval(loadDashboardData, 3000);
+
+  // Also refresh immediately whenever storage changes (e.g. a tab switch happens)
+  if (chrome.storage.onChanged) {
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area === 'local' && changes.trackingData) {
+        loadDashboardData();
+      }
+    });
+  }
 });
 
 let miniChart1, miniChart2;
+let chartsRendered = false; // Prevents chart re-render on every poll tick
 
 function loadDashboardData() {
   chrome.storage.local.get(["trackingData", "settings"], (result) => {
@@ -36,17 +49,21 @@ function loadDashboardData() {
     const toggleBtn = document.getElementById('toggleTrackingBtn');
 
     if (settings.enableTracking) {
-      statusInd.innerHTML = '🟢 Tracking';
+      statusInd.innerHTML = '<span class="status-dot"></span> Tracking';
       toggleBtn.textContent = 'Stop Tracking';
       toggleBtn.className = 'btn';
     } else {
-      statusInd.innerHTML = '🔴 Paused';
+      statusInd.innerHTML = '<span class="status-dot paused"></span> Paused';
       toggleBtn.textContent = 'Start Tracking';
       toggleBtn.className = 'btn primary';
     }
 
-    renderCharts(data.events);
-  });
+    // Only render charts on first load - not every polling tick
+    if (!chartsRendered) {
+      renderCharts(data.events);
+      chartsRendered = true;
+    }
+  }); // close chrome.storage.local.get
 }
 
 function setupEventListeners() {
