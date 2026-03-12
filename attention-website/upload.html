@@ -159,59 +159,57 @@
 
     .btn-analysis {
       width: 100%;
-      height: 68px;
-      border-radius: 34px;
+      height: 64px;
+      border-radius: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      font-family: 'Lexend', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      gap: 12px;
+      font-family: var(--font-main);
+      font-size: 1.1rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border: none;
       text-decoration: none;
-      padding: 0 30px;
+      padding: 0 25px;
+    }
+
+    .btn-analysis svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2.5px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-analysis:hover svg {
+      transform: scale(1.1);
     }
 
     .btn-analysis.browse {
-      background: linear-gradient(135deg, #A34054, #8B2E42);
+      background: linear-gradient(135deg, #A34054, #662249);
       color: white;
-      box-shadow: 0 10px 30px rgba(163, 64, 84, 0.3);
+      box-shadow: 0 10px 20px rgba(163, 64, 84, 0.2);
     }
 
     .btn-analysis.browse:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 18px 40px rgba(163, 64, 84, 0.4);
-      background: linear-gradient(135deg, #B54D63, #A34054);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(163, 64, 84, 0.3);
+      filter: brightness(1.1);
     }
 
     .btn-analysis.reset {
-      background: #ffffff;
-      border: 2px solid #A34054;
+      background: rgba(163, 64, 84, 0.1);
+      border: 2px solid rgba(163, 64, 84, 0.4);
       color: #A34054;
-      box-shadow: 0 4px 15px rgba(163, 64, 84, 0.1);
+      box-shadow: 0 5px 15px rgba(163, 64, 84, 0.05);
     }
 
     .btn-analysis.reset:hover {
-      background: #A34054;
-      color: #ffffff;
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(163, 64, 84, 0.2);
-    }
-
-    .btn-analysis.reset:hover img {
-      filter: brightness(0) invert(1);
-    }
-
-    .btn-analysis img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-      transition: all 0.3s ease;
+      background: rgba(163, 64, 84, 0.15);
+      border-color: #A34054;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(163, 64, 84, 0.1);
     }
   </style>
 </head>
@@ -244,10 +242,12 @@
       <input type="file" id="csvUpload" accept=".csv" style="display:none;" />
       <div class="analysis-btn-wrapper">
         <button class="btn-analysis browse" onclick="document.getElementById('csvUpload').click()">
-          <img src="assets/folder-icon-v4.png" alt="folder icon"> Browse CSV File
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          Browse CSV File
         </button>
         <button id="clearDataBtn" class="btn-analysis reset">
-          <img src="assets/reset-icon-v4.png" alt="reset icon"> Clear Data
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+          Clear Data
         </button>
       </div>
       <p id="uploadStatus" style="margin-top: 15px; color: var(--text-muted);"></p>
