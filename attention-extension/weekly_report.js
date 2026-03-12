@@ -8,21 +8,21 @@ function loadWeeklyData() {
   chrome.storage.local.get(["trackingData"], (result) => {
     const data = result.trackingData || { events: [], summary: {} };
     const events = data.events || [];
-    
+
     // Group events by day for the last 7 days
     const today = new Date();
     today.setHours(23, 59, 59, 999);
-    
+
     const sevenDaysAgo = new Date(today);
     sevenDaysAgo.setDate(today.getDate() - 6);
     sevenDaysAgo.setHours(0, 0, 0, 0);
 
     // Format header
-    document.getElementById('dateRangeText').textContent = 
+    document.getElementById('dateRangeText').textContent =
       `${sevenDaysAgo.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} — ${today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
 
     let currentWeekEvents = [];
-    
+
     events.forEach(e => {
       const eDate = new Date(e.timestamp || e.time);
       if (eDate >= sevenDaysAgo && eDate <= today) {
@@ -34,7 +34,7 @@ function loadWeeklyData() {
     let totalSwitches = 0;
     let notifs = 0;
     let tabsOpened = 0;
-    
+
     // Array to hold switch counts per day (index 0 is 7 days ago, index 6 is today)
     const dailySwitches = Array(7).fill(0);
     const hourlyActivity = Array(24).fill(0);
@@ -54,7 +54,7 @@ function loadWeeklyData() {
       if (e.event === 'tab_switch' || e.event === 'notification') {
         const eDate = new Date(e.timestamp || e.time);
         hourlyActivity[eDate.getHours()]++;
-        
+
         if (e.event === 'tab_switch') {
           const dayDiff = Math.floor((eDate.getTime() - sevenDaysAgo.getTime()) / (1000 * 3600 * 24));
           if (dayDiff >= 0 && dayDiff < 7) {
@@ -69,7 +69,7 @@ function loadWeeklyData() {
     // To make this impressive and functional without completely rewriting background storage, we'll estimate based on event spread or use the global summary if it's the only one available.
     // In a real prod environment we would store daily summaries.
     let activeMinsEstimate = Math.round(currentWeekEvents.length * 1.5) || (data.summary.activeMinutes || 0);
-    
+
     // Calculate ILS for the week
     // ILS = (tab_switches × 0.4) + (notifications × 0.3) + (tabs_opened × 0.3)
     let ils = ((totalSwitches * 0.4) + (notifs * 0.3) + (tabsOpened * 0.3)).toFixed(1);
@@ -144,11 +144,11 @@ function renderWeeklyChart(labels, data) {
         }
       },
       scales: {
-        x: { 
+        x: {
           grid: { display: false, drawBorder: false },
           ticks: { color: '#1B1931' }
         },
-        y: { 
+        y: {
           grid: { color: 'rgba(27, 25, 49, 0.1)' },
           ticks: { beginAtZero: true, color: '#1B1931' }
         }
@@ -204,11 +204,11 @@ function renderDetailedCharts(switches, notifs, hourlyActivity) {
           legend: { display: false }
         },
         scales: {
-          x: { 
+          x: {
             grid: { display: false },
             ticks: { color: '#1B1931', maxTicksLimit: 8 }
           },
-          y: { 
+          y: {
             grid: { color: 'rgba(27, 25, 49, 0.1)' },
             ticks: { beginAtZero: true, color: '#1B1931' }
           }

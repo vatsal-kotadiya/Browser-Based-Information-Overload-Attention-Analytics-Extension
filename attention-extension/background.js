@@ -73,11 +73,11 @@ function checkWeeklyReport() {
   chrome.storage.local.get(["lastReportDate"], (result) => {
     const now = new Date();
     const lastReport = result.lastReportDate ? new Date(result.lastReportDate) : null;
-    
+
     // Check if it's Sunday (0) and past 6 PM, or if 7+ days have passed
     const isSundayEvening = now.getDay() === 0 && now.getHours() >= 18;
     const isSevenDaysPassed = lastReport && (now.getTime() - lastReport.getTime()) > (7 * 24 * 60 * 60 * 1000);
-    
+
     if (!lastReport || isSundayEvening || isSevenDaysPassed) {
       // Trigger notification
       chrome.notifications.create('weekly_report_ready', {

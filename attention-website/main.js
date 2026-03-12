@@ -109,11 +109,11 @@ function startMockScoreAnimation() {
 
   setInterval(() => {
     // Fluctuate ILS by -2 to +2
-    const ilsChange = Math.floor(Math.random() * 5) - 2; 
+    const ilsChange = Math.floor(Math.random() * 5) - 2;
     currentIls = Math.max(0, Math.min(100, currentIls + ilsChange));
 
     // Fluctuate AFI by -1 to +2 (tends to climb slightly)
-    const afiChange = Math.floor(Math.random() * 4) - 1; 
+    const afiChange = Math.floor(Math.random() * 4) - 1;
     currentAfi = Math.max(0, Math.min(100, currentAfi + afiChange));
 
     if (currentAfi > 60) currentAfi -= 5; // keep it bounded

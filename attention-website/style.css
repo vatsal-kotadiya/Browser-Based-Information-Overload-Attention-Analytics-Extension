@@ -1,14 +1,21 @@
 :root {
-  --bg-dark: #E9BCB9; /* Lightest Peach Background */
-  --bg-card: rgba(255, 255, 255, 0.45); /* Frosty White Panels */
+  --bg-dark: #E9BCB9;
+  /* Lightest Peach Background */
+  --bg-card: rgba(255, 255, 255, 0.45);
+  /* Frosty White Panels */
   --border-subtle: rgba(255, 255, 255, 0.5);
-  --text-primary: #1B1931; /* Darkest Navy/Plum */
-  --text-muted: #44174E; /* Deep Berry */
+  --text-primary: #1B1931;
+  /* Darkest Navy/Plum */
+  --text-muted: #44174E;
+  /* Deep Berry */
 
-  --brand-primary: #A34054; /* Rose Accent */
-  --brand-hover: #662249; /* Darker Berry Hover */
+  --brand-primary: #A34054;
+  /* Rose Accent */
+  --brand-hover: #662249;
+  /* Darker Berry Hover */
   --brand-gradient: linear-gradient(135deg, #A34054, #ED9E59);
-  --warning: #ED9E59; /* Orange/Peach Accent */
+  --warning: #ED9E59;
+  /* Orange/Peach Accent */
 
   --font-main: 'Outfit', sans-serif;
   --radius-lg: 24px;
@@ -78,12 +85,14 @@ body {
 .btn-primary:hover {
   background: var(--brand-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(163, 64, 84, 0.3); /* Rose shadow */
+  box-shadow: 0 10px 20px rgba(163, 64, 84, 0.3);
+  /* Rose shadow */
 }
 
 .btn-secondary {
   background: white;
-  color: #1B1931; /* Deep Plum */
+  color: #1B1931;
+  /* Deep Plum */
   border: none;
   font-weight: 700;
   box-shadow: 0 4px 10px rgba(27, 25, 49, 0.05);
@@ -102,13 +111,15 @@ body {
 }
 
 .btn-outline:hover {
-  background: rgba(102, 34, 73, 0.1); /* brand-hover transparent */
+  background: rgba(102, 34, 73, 0.1);
+  /* brand-hover transparent */
 }
 
 .btn-large {
   padding: 16px 36px;
   font-size: 1.15rem;
-  border-radius: 30px; /* High radius for pill shape */
+  border-radius: 30px;
+  /* High radius for pill shape */
 }
 
 .chrome-icon {
@@ -122,7 +133,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 5%;
-  background: rgba(255, 255, 255, 0.85); /* Frost glass */
+  background: rgba(255, 255, 255, 0.85);
+  /* Frost glass */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   position: sticky;
@@ -407,7 +419,8 @@ body {
   height: 80px;
   background: #ffffff;
   border-radius: 24px;
-  box-shadow: 0 10px 20px rgba(27, 25, 49, 0.08); /* Icon shadow */
+  box-shadow: 0 10px 20px rgba(27, 25, 49, 0.08);
+  /* Icon shadow */
   transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -607,7 +620,7 @@ body {
   .hero-title {
     font-size: 3.5rem;
   }
-  
+
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -620,7 +633,7 @@ body {
     gap: 15px;
     text-align: center;
   }
-  
+
   .nav-links {
     gap: 15px;
     font-size: 0.9rem;
@@ -657,7 +670,7 @@ body {
     transform: none;
     margin: 0 auto;
   }
-  
+
   .mock-extension:hover {
     transform: translateY(-10px);
   }
@@ -678,7 +691,8 @@ body {
     gap: 60px;
   }
 
-  .how-step, .how-step.reverse {
+  .how-step,
+  .how-step.reverse {
     flex-direction: column;
     text-align: center;
     gap: 30px;
@@ -703,12 +717,12 @@ body {
   .hero-title {
     font-size: 2.2rem;
   }
-  
+
   .hero-cta .btn {
     width: 100%;
   }
-  
+
   .mock-score-board {
     flex-direction: column;
   }
-}
+}

@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('userAFI').textContent = afiDisplay;
 
   // ILS (Estimating tabs opened as same as total switches for report purposes)
-  let estimatedTabs = totalSwitches; 
+  let estimatedTabs = totalSwitches;
   let ilsVal = ((totalSwitches * 0.4) + (totalNotifs * 0.3) + (estimatedTabs * 0.3)).toFixed(1);
   let ilsDisplay = parseFloat(ilsVal) > 100 ? "100+" : ilsVal;
   const ilsEl = document.getElementById('userILS');

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('uploadStatus').textContent = '';
       clearDataBtn.style.display = 'none';
       if (fileInput) fileInput.value = '';
-      
+
       // Destroy existing charts to fully reset canvas state
       if (advC1) advC1.destroy();
       if (advC2) advC2.destroy();
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
           labels: Object.keys(weekly).sort(),
           datasets: [{ label: 'Overload Events', data: Object.values(weekly), backgroundColor: '#A34054', borderRadius: 4 }]
         },
-        options: { 
-          responsive: true, 
+        options: {
+          responsive: true,
           maintainAspectRatio: false,
           scales: {
             x: { ticks: { color: '#1B1931' }, grid: { display: false } },
@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
             backgroundColor: '#ED9E59'
           }]
         },
-        options: { 
-          responsive: true, 
+        options: {
+          responsive: true,
           maintainAspectRatio: false,
           scales: {
             x: { ticks: { color: '#1B1931' }, grid: { color: 'rgba(27, 25, 49, 0.1)' } },
@@ -189,22 +189,22 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'bar',
         data: {
           labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
-          datasets: [{ 
+          datasets: [{
             label: 'Distractions',
-            data: distByHour, 
+            data: distByHour,
             backgroundColor: 'rgba(237, 158, 89, 0.7)', /* Orange semi-transparent */
             borderRadius: 4
           }]
         },
-        options: { 
-          responsive: true, 
+        options: {
+          responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: { display: false }
           },
           scales: {
             y: { display: false, beginAtZero: true },
-            x: { 
+            x: {
               grid: { display: false },
               ticks: { maxTicksLimit: 8, color: '#1B1931' }
             }
