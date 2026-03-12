@@ -147,34 +147,65 @@
       }
     }
 
-    .btn-unique-clear {
-      background: rgba(163, 64, 84, 0.08);
-      border: 1px solid rgba(163, 64, 84, 0.3);
-      color: #A34054;
-      padding: 10px 24px;
-      border-radius: 30px;
+    /* Premium Button Styles */
+    .analysis-btn-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      margin: 30px auto 0;
+      max-width: 480px;
+    }
+
+    .btn-analysis {
+      width: 100%;
+      height: 68px;
+      border-radius: 34px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      justify-content: center;
+      gap: 16px;
+      font-size: 1.25rem;
+      font-weight: 700;
       cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      text-decoration: none;
+      padding: 0 30px;
     }
 
-    .btn-unique-clear:hover {
-      background: rgba(163, 64, 84, 0.15);
+    .btn-analysis.browse {
+      background: linear-gradient(135deg, #A34054, #8B2E42);
+      color: white;
+      box-shadow: 0 8px 25px rgba(163, 64, 84, 0.35);
+    }
+
+    .btn-analysis.browse:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(163, 64, 84, 0.45);
+      background: linear-gradient(135deg, #B54D63, #A34054);
+    }
+
+    .btn-analysis.reset {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(163, 64, 84, 0.3);
+      color: #A34054;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-analysis.reset:hover {
+      background: rgba(163, 64, 84, 0.1);
       border-color: #A34054;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(163, 64, 84, 0.1);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(163, 64, 84, 0.15);
     }
 
-    .btn-unique-clear .btn-icon {
-      width: 20px;
-      height: 20px;
+    .btn-analysis img {
+      width: 32px;
+      height: 32px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(163, 64, 84, 0.2));
     }
-
   </style>
 </head>
 
@@ -204,11 +235,12 @@
         Select an exported <b>CSV</b> file to continue.
       </p>
       <input type="file" id="csvUpload" accept=".csv" style="display:none;" />
-      <div style="display: flex; gap: 15px; justify-content: center;">
-        <button class="btn btn-primary btn-large" onclick="document.getElementById('csvUpload').click()">📁 Browse CSV
-          File</button>
-        <button id="clearDataBtn" class="btn-unique-clear">
-          <img src="assets/clear-icon.png" class="btn-icon"> Clear Data
+      <div class="analysis-btn-wrapper">
+        <button class="btn-analysis browse" onclick="document.getElementById('csvUpload').click()">
+          <img src="assets/folder-icon-v3.png" alt="folder icon"> Browse CSV File
+        </button>
+        <button id="clearDataBtn" class="btn-analysis reset">
+          <img src="assets/reset-icon-v3.png" alt="reset icon"> Clear Data
         </button>
       </div>
       <p id="uploadStatus" style="margin-top: 15px; color: var(--text-muted);"></p>
