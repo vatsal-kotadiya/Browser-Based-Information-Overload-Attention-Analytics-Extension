@@ -49,19 +49,30 @@ document.addEventListener('DOMContentLoaded', () => {
     activeMinutesApprox = Math.max(1, events.length * 2);
   }
 
-  let afiEstimate = (totalSwitches / activeMinutesApprox).toFixed(2);
-  document.getElementById('userAFI').textContent = afiEstimate;
+  // Calculate exact algorithms used in extension
+  // AFI = tab_switches / active_minutes
+  let afiVal = activeMinutesApprox > 0 ? (totalSwitches / activeMinutesApprox).toFixed(1) : 0;
+  let afiDisplay = parseFloat(afiVal) > 100 ? "100+" : afiVal;
+  document.getElementById('userAFI').textContent = afiDisplay;
+
+  // ILS (Estimating tabs opened as same as total switches for report purposes)
+  let estimatedTabs = totalSwitches; 
+  let ilsVal = ((totalSwitches * 0.4) + (totalNotifs * 0.3) + (estimatedTabs * 0.3)).toFixed(1);
+  let ilsDisplay = parseFloat(ilsVal) > 100 ? "100+" : ilsVal;
+  const ilsEl = document.getElementById('userILS');
+  if (ilsEl) ilsEl.textContent = ilsDisplay;
 
   let subText = "";
-  if (afiEstimate > 6.0) {
-    subText = "Extremely High Fragmentation. Well above the 4.5 baseline.";
+  let numericAfi = parseFloat(afiVal) || 0;
+  if (numericAfi > 5.0) {
+    subText = "Extremely High Fragmentation. Well above healthy focus levels.";
     document.getElementById('userAFI').style.color = '#ef4444';
-  } else if (afiEstimate > 4.5) {
-    subText = "High Fragmentation. Slightly above the 4.5 baseline.";
+  } else if (numericAfi > 2.0) {
+    subText = "High Fragmentation. Above the focus baseline.";
     document.getElementById('userAFI').style.color = '#f59e0b';
   } else {
-    subText = "Healthy Focus. Below the 4.5 baseline.";
-    document.getElementById('userAFI').style.color = '#ED9E59';
+    subText = "Healthy Focus. Below the baseline.";
+    document.getElementById('userAFI').style.color = '#10b981';
   }
   document.getElementById('afiSub').textContent = subText;
 });

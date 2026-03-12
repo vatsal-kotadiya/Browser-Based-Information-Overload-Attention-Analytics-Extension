@@ -71,12 +71,20 @@ function loadWeeklyData() {
     let activeMinsEstimate = Math.round(currentWeekEvents.length * 1.5) || (data.summary.activeMinutes || 0);
     
     // Calculate ILS for the week
+    // ILS = (tab_switches × 0.4) + (notifications × 0.3) + (tabs_opened × 0.3)
     let ils = ((totalSwitches * 0.4) + (notifs * 0.3) + (tabsOpened * 0.3)).toFixed(1);
-    if (ils > 100) ils = "100+";
+    if (parseFloat(ils) > 100) ils = "100+";
+
+    // AFI = switches / activeMinutes
+    let afiVal = activeMinsEstimate > 0 ? (totalSwitches / activeMinsEstimate).toFixed(1) : 0;
+    if (parseFloat(afiVal) > 100) afiVal = "100+";
 
     document.getElementById('valSwitches').textContent = totalSwitches;
     document.getElementById('valTime').textContent = `${Math.floor(activeMinsEstimate / 60)}h ${activeMinsEstimate % 60}m`;
     document.getElementById('valScore').textContent = ils;
+    // Note: If you have a dedicated AFI element in the weekly report HTML, update it here.
+    const afiEl = document.getElementById('valAFI');
+    if (afiEl) afiEl.textContent = afiVal;
 
     // Hardcode some mock trends to make it look professional (since we don't have historical previous week data structured yet)
     setupTrend('trendSwitches', -12, '% less switches than last week', 'good');

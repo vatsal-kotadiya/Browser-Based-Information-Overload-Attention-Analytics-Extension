@@ -112,7 +112,8 @@ function renderCharts(events) {
   let sortedDays = Object.keys(dailyData).sort();
   let ilsTrend = sortedDays.map(day => {
     let d = dailyData[day];
-    return ((d.switches * 0.4) + (d.notifs * 0.3) + (d.opens * 0.3)).toFixed(1);
+    let val = (d.switches * 0.4) + (d.notifs * 0.3) + (d.opens * 0.3);
+    return val > 100 ? 100 : val.toFixed(1); // Cap at 100 for chart visual stability, display usually handled by labels
   });
 
   new Chart(document.getElementById('chart2'), {

@@ -92,8 +92,13 @@ function renderHistoryTable(viewMode, events) {
     let activeMins = g.activeMs / 60000;
 
     // Math exactly per roadmap
-    let ils = (g.switches * 0.4) + (g.notifications * 0.3) + (g.opens * 0.3);
-    let afi = activeMins > 0 ? (g.switches / activeMins) : 0;
+    // ILS = (tab_switches × 0.4) + (notifications × 0.3) + (tabs_opened × 0.3)
+    let ilsVal = (g.switches * 0.4) + (g.notifications * 0.3) + (g.opens * 0.3);
+    let ilsDisplay = ilsVal > 100 ? "100+" : ilsVal.toFixed(1);
+
+    // AFI = tab_switches / active_minutes
+    let afiVal = activeMins > 0 ? (g.switches / activeMins) : 0;
+    let afiDisplay = afiVal > 100 ? "100+" : afiVal.toFixed(1);
 
     const tr = document.createElement('tr');
     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
@@ -103,14 +108,14 @@ function renderHistoryTable(viewMode, events) {
     tdDate.style.padding = '12px 8px';
 
     const tdILS = document.createElement('td');
-    tdILS.textContent = ils.toFixed(1);
+    tdILS.textContent = ilsDisplay;
     tdILS.style.padding = '12px 8px';
     tdILS.style.fontWeight = 'bold';
 
     const tdAFI = document.createElement('td');
-    tdAFI.textContent = afi.toFixed(1);
+    tdAFI.textContent = afiDisplay;
     tdAFI.style.padding = '12px 8px';
-    if (afi > 2) tdAFI.style.color = 'var(--warning)'; // highlight high distraction
+    if (afiVal > 2) tdAFI.style.color = 'var(--warning)'; // highlight high distraction
 
     const tdSwitches = document.createElement('td');
     tdSwitches.textContent = g.switches;

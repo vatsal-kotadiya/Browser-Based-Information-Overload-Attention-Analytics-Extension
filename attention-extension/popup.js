@@ -35,11 +35,11 @@ function loadDashboardData() {
     // Calculate Scores based on exact requested formulas
     // ILS = (tab_switches × 0.4) + (notifications × 0.3) + (tabs_opened × 0.3)
     let ils = ((summary.tabSwitches * 0.4) + (summary.notifications * 0.3) + (summary.tabsOpened * 0.3)).toFixed(1);
-    if (ils > 100) ils = "100+";
+    if (parseFloat(ils) > 100) ils = "100+";
 
     // AFI = tab_switches / active_minutes (if activeMinutes > 0)
     let afi = summary.activeMinutes > 0 ? (summary.tabSwitches / summary.activeMinutes).toFixed(1) : 0;
-    if (afi > 100) afi = "100+";
+    if (parseFloat(afi) > 100) afi = "100+";
 
     document.getElementById('ilsValue').textContent = `${ils} / 100`;
     document.getElementById('afiValue').textContent = `${afi} / 100`;
