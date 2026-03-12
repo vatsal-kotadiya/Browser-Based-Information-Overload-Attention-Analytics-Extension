@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('fileNameDisplay').innerHTML = `Select an exported <b>CSV</b> file to continue.`;
       document.getElementById('advancedDataSection').style.display = 'none';
       document.getElementById('uploadStatus').textContent = '';
+      clearDataBtn.style.display = 'none';
       if (fileInput) fileInput.value = '';
       
       // Destroy existing charts to fully reset canvas state
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
           advancedSection.style.visibility = 'visible';
           // Scroll down to the charts for the user smoothly
           advancedSection.scrollIntoView({ behavior: 'smooth' });
+          if (clearDataBtn) clearDataBtn.style.display = 'flex';
         }
       } catch (err) {
         if (advancedSection) advancedSection.style.visibility = 'visible';
